@@ -1,5 +1,7 @@
 package com.praticando_spring.primeiro_projeto_spring.errors;
 
+import com.praticando_spring.primeiro_projeto_spring.exceptions.UserEmailDuplicatedException;
+import com.praticando_spring.primeiro_projeto_spring.exceptions.UserExistsException;
 import com.praticando_spring.primeiro_projeto_spring.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,5 +20,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<RestErrorMessage> userNotFoundHandler(UserNotFoundException ex){
         RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.NOT_FOUND, ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(threatResponse);
+    }
+
+    @ExceptionHandler(UserExistsException.class)
+    public ResponseEntity<RestErrorMessage> userExistsHandler(UserExistsException ex){
+        RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(threatResponse);
+    }
+
+    @ExceptionHandler(UserEmailDuplicatedException.class)
+    public ResponseEntity<RestErrorMessage> userEmailDuplicatedHandler(UserEmailDuplicatedException ex){
+        RestErrorMessage threatResponse = new RestErrorMessage(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(threatResponse);
     }
 }

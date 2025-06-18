@@ -1,23 +1,16 @@
 package com.praticando_spring.primeiro_projeto_spring.services;
 
 import com.praticando_spring.primeiro_projeto_spring.domain.User;
-import com.praticando_spring.primeiro_projeto_spring.exceptions.UserNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class UserService implements IUserService {
-    @Override
-    public List<User> getUsers() {
-        List<User> users = new ArrayList<User>();
-        users.add(new User("miguel", "miguel@gmail.com", "miguel123"));
-        users.add(new User("isadora", "isadora@gmail.com", "isadora123"));
+public interface UserService {
 
-        return users;
-    }
+    User findById(int id);
+    List<User> findAll();
+    User save(User user);
+    void deleteById(int id);
 
-    @Override
-    public void throwUserNotFoundExceptionTest() {
-        throw new UserNotFoundException();
-    }
+    void throwUserNotFoundExceptionTest();
 }

@@ -1,8 +1,5 @@
 package com.praticando_spring.primeiro_projeto_spring.configuration;
 
-import com.praticando_spring.primeiro_projeto_spring.services.IUserService;
-import com.praticando_spring.primeiro_projeto_spring.services.UserService;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // @Configuration define que essa classe será responsavel por configurar @Beans
@@ -13,8 +10,4 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UserConfiguration {
 
-    @Bean
-    public IUserService userService(){
-        return new UserService();
-    }
 }
