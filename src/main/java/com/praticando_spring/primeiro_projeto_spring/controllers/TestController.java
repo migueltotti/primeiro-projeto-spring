@@ -1,6 +1,7 @@
 package com.praticando_spring.primeiro_projeto_spring.controllers;
 
 import com.praticando_spring.primeiro_projeto_spring.domain.User;
+import com.praticando_spring.primeiro_projeto_spring.domain.UserRole;
 import com.praticando_spring.primeiro_projeto_spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class TestController {
     @GetMapping("user-not-found-exception")
     public ResponseEntity<User> userNotFoundException() {
         userService.throwUserNotFoundExceptionTest();
-        return ResponseEntity.ok(new User(1, "Miguel", "miguel@gmail.com", "miguel123"));
+        return ResponseEntity.ok(new User(1, "Miguel", "miguel@gmail.com", "miguel123", UserRole.ADMIN));
     }
 
     @GetMapping("/query")

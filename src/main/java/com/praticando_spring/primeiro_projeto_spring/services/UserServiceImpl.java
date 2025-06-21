@@ -5,6 +5,7 @@ import com.praticando_spring.primeiro_projeto_spring.exceptions.UserEmailDuplica
 import com.praticando_spring.primeiro_projeto_spring.exceptions.UserExistsException;
 import com.praticando_spring.primeiro_projeto_spring.exceptions.UserNotFoundException;
 import com.praticando_spring.primeiro_projeto_spring.repositories.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public class UserServiceImpl implements UserService {
     public User findById(int id) throws UserNotFoundException {
         return userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
+    }
+
+    @Override
+    public UserDetails findByEmail(String email) throws UserNotFoundException {
+        return userRepository.findByEmail(email);
     }
 
     @Override
